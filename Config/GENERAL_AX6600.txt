@@ -1,5 +1,5 @@
 #科学插件调整
-#CONFIG_PACKAGE_luci-app-homeproxy=y
+CONFIG_PACKAGE_luci-app-homeproxy=y
 #增加插件
 CONFIG_PACKAGE_luci-app-autoreboot=y
 CONFIG_PACKAGE_luci-app-netspeedtest=n
@@ -50,7 +50,8 @@ CONFIG_PACKAGE_kmod-inet-diag=y
 CONFIG_PACKAGE_kmod-inet-mptcp-diag=n
 CONFIG_PACKAGE_kmod-mtd-rw=n
 CONFIG_PACKAGE_kmod-netlink-diag=n
-CONFIG_PACKAGE_kmod-nf-nat6=n
+#IPv6 NAT转发底层支持（IPv6转IPv4必备）
+CONFIG_PACKAGE_kmod-nf-nat6=y
 CONFIG_PACKAGE_kmod-nf-nathelper=n
 CONFIG_PACKAGE_kmod-nft-arp=n
 CONFIG_PACKAGE_kmod-nft-bridge=y
@@ -59,7 +60,8 @@ CONFIG_PACKAGE_kmod-nft-connlimit=n
 CONFIG_PACKAGE_kmod-nft-core=y
 CONFIG_PACKAGE_kmod-nft-dup-inet=n
 CONFIG_PACKAGE_kmod-nft-fib=y
-CONFIG_PACKAGE_kmod-nft-fullcone=n
+#IPv4全锥NAT 游戏/P2P/内网穿透优化
+CONFIG_PACKAGE_kmod-nft-fullcone=y
 CONFIG_PACKAGE_kmod-nft-nat=n
 CONFIG_PACKAGE_kmod-nft-netdev=n
 CONFIG_PACKAGE_kmod-nft-offload=n
@@ -78,7 +80,9 @@ CONFIG_PACKAGE_kmod-usb-net=y
 CONFIG_PACKAGE_kmod-usb-net-asix=y
 CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
 CONFIG_PACKAGE_kmod-usb-net-cdc-eem=n
-CONFIG_PACKAGE_kmod-usb-net-cdc-ether=n
+#中兴U30 Pro USB网卡模式驱动
+CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
+#4G拨号冗余驱动关闭
 CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=n
 CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=n
 CONFIG_PACKAGE_kmod-usb-net-cdc-subset=n
@@ -88,8 +92,8 @@ CONFIG_PACKAGE_kmod-usb-net-ipheth=n
 CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y
 CONFIG_PACKAGE_kmod-usb-net-qmi-wwan-fibocom=y
 CONFIG_PACKAGE_kmod-usb-net-qmi-wwan-quectel=y
-# 安卓 RNDIS 共享
-CONFIG_PACKAGE_kmod-usb-net-rndis=n
+# 安卓 RNDIS 手机USB共享上网驱动
+CONFIG_PACKAGE_kmod-usb-net-rndis=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8150=n
 CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
 CONFIG_PACKAGE_kmod-usb-net-sierrawireless=n
@@ -106,6 +110,12 @@ CONFIG_PACKAGE_kmod-mmc=y
 CONFIG_PACKAGE_kmod-sdhci=y
 CONFIG_PACKAGE_kmod-sdhci-msm=y
 CONFIG_PACKAGE_kmod-fs-ntfs3=y
+#U盘/硬盘全格式支持 轻NAS必备
+CONFIG_PACKAGE_kmod-fs-vfat=y
+CONFIG_PACKAGE_kmod-fs-exfat=y
+#中文文件名编码支持
+CONFIG_PACKAGE_kmod-nls-cp936=y
+CONFIG_PACKAGE_kmod-nls-utf8=y
 #组件调整
 CONFIG_PACKAGE_autocore=y
 CONFIG_PACKAGE_perl=n
@@ -143,7 +153,9 @@ CONFIG_PACKAGE_openssl-util=y
 CONFIG_PACKAGE_proto-bonding=n
 CONFIG_PACKAGE_sfdisk=y
 CONFIG_PACKAGE_sgdisk=y
+#USB设备模式切换工具
 CONFIG_PACKAGE_usb-modeswitch=y
+CONFIG_PACKAGE_usb-modeswitch-data=y
 CONFIG_PACKAGE_usbmuxd=n
 CONFIG_PACKAGE_usbutils=y
 
@@ -165,3 +177,58 @@ CONFIG_PACKAGE_luci-app-wireless-regdb=y
 #老优化，副作用大
 CONFIG_PACKAGE_skb_recycler=n
 
+#新增双代理内核
+CONFIG_PACKAGE_sing-box=y
+#新增代理插件
+CONFIG_PACKAGE_luci-app-openclash=y
+#DNS分流过滤插件
+CONFIG_PACKAGE_luci-app-mosdns=y
+CONFIG_PACKAGE_luci-app-adguardhome=y
+CONFIG_PACKAGE_adguardhome=y
+#IPv6辅助工具
+CONFIG_PACKAGE_luci-app-ipv6helper=y
+CONFIG_PACKAGE_ipv6helper=y
+CONFIG_PACKAGE_odhcp6c=y
+#DDNS动态域名解析
+CONFIG_PACKAGE_luci-app-ddns=y
+CONFIG_PACKAGE_ddns-scripts-cloudflare=y
+#远程访问穿透工具
+CONFIG_PACKAGE_luci-app-ddnsto=y
+CONFIG_PACKAGE_luci-app-frpc=y
+CONFIG_PACKAGE_frpc=y
+#IPTV组播转发
+CONFIG_PACKAGE_luci-app-udpxy=y
+CONFIG_PACKAGE_udpxy=y
+#多线负载均衡
+CONFIG_PACKAGE_luci-app-mwan3=y
+CONFIG_PACKAGE_mwan3=y
+#双组网异地互联
+CONFIG_PACKAGE_luci-app-zerotier=y
+CONFIG_PACKAGE_zerotier=y
+CONFIG_PACKAGE_luci-app-tailscale-community=y
+CONFIG_PACKAGE_tailscale=y
+#新版全功能UPnP端口映射
+CONFIG_PACKAGE_luci-app-upnp-igd-pcp=y
+CONFIG_PACKAGE_upnp-igd-pcp=y
+#网络运维工具插件
+CONFIG_PACKAGE_luci-app-watchcat=y
+CONFIG_PACKAGE_luci-app-bandwidthmon=y
+CONFIG_PACKAGE_socat=y
+#系统辅助小工具
+CONFIG_PACKAGE_luci-app-vlmcsd=y
+CONFIG_PACKAGE_vlmcsd=y
+CONFIG_PACKAGE_luci-app-wechatpush=y
+#应用商店
+CONFIG_PACKAGE_luci-app-store=y
+CONFIG_PACKAGE_iStore=y
+#网页主题（仅保留Argon主题）
+CONFIG_PACKAGE_luci-theme-argon=y
+CONFIG_PACKAGE_luci-app-argon-config=y
+CONFIG_PACKAGE_luci-theme-design=n
+CONFIG_PACKAGE_luci-app-design-config=n
+#WireGuard虚拟专用组网完整支持
+CONFIG_PACKAGE_luci-app-wireguard=y
+CONFIG_PACKAGE_wireguard-tools=y
+#NGIX内网穿透插件
+CONFIG_PACKAGE_luci-app-ngix=y
+CONFIG_PACKAGE_ngix=y
